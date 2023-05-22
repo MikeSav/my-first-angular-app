@@ -1,0 +1,16 @@
+.album-details {
+  display: flex;
+  flex-direction: column;
+  font-family: monospace;
+  font-size: 2rem;
+  margin: 2rem 0;
+
+  &__row {
+    display: flex;
+    gap: 1rem;
+
+    &__cell {
+      flex: 1 0 50%;
+    }
+  }
+}

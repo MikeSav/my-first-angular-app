@@ -1,0 +1,26 @@
+<div class="album-details" *ngIf="(album$ | async) as album; else loading">
+  <!-- artist -->
+  <div class="album-details__row">
+    <div class="album-details__row__cell">Artist</div>
+    <div class="album-details__row__cell">{{ album.artist }}</div>
+  </div>
+  <!-- album name -->
+  <div class="album-details__row">
+    <div class="album-details__row__cell">Album Name</div>
+    <div class="album-details__row__cell">{{ album.title }}</div>
+  </div>
+  <!-- Album Genre -->
+  <div class="album-details__row">
+    <div class="album-details__row__cell">Album Genre</div>
+    <div class="album-details__row__cell">{{ album.genre }}</div>
+  </div>
+  <!-- Album Release Date -->
+  <div class="album-details__row">
+    <div class="album-details__row__cell">Album Release Date</div>
+    <div class="album-details__row__cell">{{ album.released}}</div>
+  </div>
+</div>
+
+<ng-template #loading>
+  Loading stuff...
+</ng-template>

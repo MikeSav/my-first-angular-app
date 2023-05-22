@@ -1,0 +1,30 @@
+<table class="album-list">
+  <thead>
+  <tr class="album-list__head__row">
+    <th class="album-list__head__row__cell">Artist</th>
+    <th class="album-list__head__row__cell">Title</th>
+    <th class="album-list__head__row__cell">Genre</th>
+    <th class="album-list__head__row__cell">Released</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="album-list__body__row"
+      *ngFor="let album of albums$ | async"
+      (click)="goToAlbum(album.id)">
+    <td class="album-list__body__row__cell">
+      {{ album.artist }}
+    </td>
+    <td class="album-list__body__row__cell">
+      {{ album.title }}
+    </td>
+    <td class="album-list__body__row__cell">
+      {{ album.genre }}
+    </td>
+    <td class="album-list__body__row__cell">
+      {{ album.released }}
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<button class="button" (click)="addRandomAlbum()">Add An Album</button>
