@@ -7,6 +7,7 @@ import {
   HttpResponse
 } from '@angular/common/http';
 import {
+  delay,
   Observable,
   of
 } from 'rxjs';
@@ -31,7 +32,7 @@ export class HeaderInterceptor implements HttpInterceptor {
           statusText: 'OK',
           body: this.MOCK_DATA
         })
-      );
+    );
 
     } else if (request.method === 'GET' && request.url.startsWith('/get-albums/')) {
       // for a specific album
@@ -42,7 +43,7 @@ export class HeaderInterceptor implements HttpInterceptor {
           status: 200,
           statusText: 'OK',
           body: singleRecord
-        }));
+        })).pipe(delay(0));
     } else {
       return next.handle(request);
     }
