@@ -32,7 +32,9 @@ export class AlbumDetailsComponent implements OnInit {
   ngOnInit(): void {
     // let's get the url param... but no pyramid of doom!!!
     this.album$ = this.activatedRoute.params.pipe(
+      // https://rxjs.dev/api/operators/map
       map(params => params['id']),
+      // https://rxjs.dev/api/operators/switchMap
       switchMap(albumId => this.http.get<Album>(`/get-albums/${albumId}`)
       ));
   }
