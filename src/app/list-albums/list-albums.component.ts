@@ -21,6 +21,11 @@ export class ListAlbumsComponent implements OnInit {
   http = inject(HttpClient);
   router = inject(Router)
 
+  /**
+   * Initialize the directive or component after Angular first displays
+   * the data-bound properties and
+   * sets the directive or component's input properties.
+   */
   ngOnInit(): void {
     this.albums$ = this.http.get<Album[]>('/get-albums');
   }
