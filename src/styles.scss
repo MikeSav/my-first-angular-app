@@ -1,1 +1,81 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --sio-grey: #404040;
+  --sio-bad-yellow: #F1C40F;
+  --sio-nice-yellow: #FFEB3B;
+  --sio-pale-blue: #DAFFFC;
+  --sio-light-pink: #FFB6C1;
+  --sio-red: rgb(228, 35, 38);
+  --sio-light-grey-text: #959595;
+  --sio-light-grey-background: #c2c2c2;
+  --sio-separator: rgba(255, 255, 255, .15);
+  --sio-green: rgb(0, 149, 52);
+  --sio-very-dark-grey: #2D292D;
+  --intro-gradient-start: rgba(78, 181, 114, 1);
+  --intro-gradient-end: rgba(0, 149, 52, 1);
+  --bungee: 'Bungee Shade'
+}
+
+/* fonts */
+/* bungee-shade-regular - latin */
+@font-face {
+  font-family: 'Bungee Shade';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+  url('./assets/fonts/bungee-shade-v11-latin-regular.woff2') format('woff2') /* Super Modern Browsers */
+}
+
+/* target html */
+
+body {
+  margin: 0;
+  background: no-repeat fixed linear-gradient(180deg, var(--intro-gradient-start) 0%, var(--intro-gradient-end) 100%);
+  color: var(--sio-very-dark-grey);
+}
+
+h1 {
+  color: var(--sio-very-dark-grey);
+  font-family: var(--bungee);
+  font-size: 4rem;
+  -webkit-font-smoothing: antialiased;
+  margin: 1rem 0;
+}
+
+h2 {
+  color: var(--sio-very-dark-grey);
+  font-family: var(--bungee);
+  font-size: 3rem;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+.mike-albums {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  margin: 0 2rem 2rem 2rem;
+
+  &__header {
+    // nothing so far...
+  }
+}
+
+.button {
+  border: 0;
+  background: var(--sio-bad-yellow);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  font-family: 'Bungee Shade';
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+  &:disabled {
+    background: var(--sio-light-grey-background);
+  }
+
+  &:active {
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.15);;
+  }
+}
