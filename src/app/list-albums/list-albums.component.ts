@@ -20,6 +20,7 @@ export class ListAlbumsComponent implements OnInit {
   albums$!: Observable<Album[]>;
 
   apiService = inject(ApiService);
+
   router = inject(Router);
 
   /**
