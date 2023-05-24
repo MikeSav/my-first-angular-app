@@ -1,0 +1,103 @@
+.album-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  margin-top: 3rem;
+
+  &__feedback {
+    padding: 1rem;
+    font-family: monospace;
+    background: var(--sio-nice-yellow);
+    border-bottom: 4px solid #FFFFFF;
+    font-size: 1.5rem;
+  }
+
+  &__intro {
+    padding-bottom: 1rem;
+    font-size: 2rem;
+    font-family: monospace, sans-serif;
+  }
+
+  &__control {
+    border: 0;
+    background: var(--sio-bad-yellow);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    font-family: 'Bungee Shade';
+
+    &:disabled {
+      background: var(--sio-light-grey-background);
+    }
+
+    &--subcontrol {
+      background: var(--sio-pale-blue);
+      margin-bottom: 1rem;
+    }
+
+    &--destructive {
+      background: var(--sio-light-pink);
+    }
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.5rem;
+
+    &__separator {
+      border-bottom: 4px solid #FFFFFF;
+      margin-bottom: 0.5rem;
+      padding: 0 0.5rem;
+      background: var(--sio-separator);
+    }
+
+    &__label {
+      font-family: 'Bungee Shade';
+      font-size: 1.5rem;
+      padding-bottom: 1rem;
+
+      &--sub {
+        padding-bottom: 0;
+      }
+
+      &--mono {
+        font-family: monospace;
+      }
+    }
+
+    &__control {
+      padding: 0.5rem;
+      font-size: 1.5rem;
+      width: 100%;
+      font-family: monospace;
+      box-sizing: border-box;
+
+      &__json {
+        margin: .5rem 0;
+        background: var(--sio-grey);
+        border: 1px solid #FFFFFF;
+        color: #FFFFFF;
+        font-family: monospace;
+        padding: .5rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      }
+
+      &__error {
+        color: var(--sio-red);
+        font-family: monospace;
+        font-size: 1.5rem;
+      }
+
+      &.ng-invalid.ng-dirty, &.ng-invalid.ng-touched {
+        border: 4px solid var(--sio-red);
+        color: var(--sio-red);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

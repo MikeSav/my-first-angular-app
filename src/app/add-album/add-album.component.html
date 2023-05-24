@@ -1,1 +1,116 @@
-<p>add-album works!</p>
+<!-- Some homework -->
+<!-- 1. How do we validate the songs as if a favourite is submitted it must have entries -->
+<!-- 2. Why is the songs section visable when reseting? hint... [{}] -->
+<!-- 3. Show optional fav. songs on albume details page -->
+<!-- 4. How can we delete albums? -->
+<form [formGroup]="addAlbumForm" (submit)="onSubmit()">
+  <!-- thanks  -->
+  <div class="album-form__feedback" [hidden]="!showThanks">
+    <h2>Thanks for adding another album</h2>
+    Perhaps you'd like to add another?<br><br>
+    <button type="button" class="album-form__control album-form__control--subcontrol" (click)="closeThanks()">Close Me
+    </button>
+  </div>
+  <div class="album-form">
+    <div class="album-form__intro">
+      I love music... what are my favourite albums...
+    </div>
+    <!-- artist name -->
+    <div class="album-form__group">
+      <div class="album-form__group__label">Artist Name</div>
+      <div>
+        <input type="text" class="album-form__group__control" formControlName="albumArtist">
+        <div class="album-form__group__control__json">{{ addAlbumForm.controls['albumArtist'].errors | json }}</div>
+        <div class="album-form__group__control__error"
+             *ngIf="addAlbumForm.controls['albumArtist'].errors?.['required'] && this.addAlbumForm.controls['albumArtist'].dirty">
+          Please enter an artist name
+        </div>
+        <div class="album-form__group__control__error"
+             *ngIf="addAlbumForm.controls['albumArtist'].errors?.['maxlength']">Ouch, that is too long!
+        </div>
+      </div>
+    </div>
+    <!-- album title -->
+    <div class="album-form__group__label">Album Title</div>
+    <div>
+      <input type="text" class="album-form__group__control" formControlName="albumTitle">
+      <div class="album-form__group__control__json">{{ addAlbumForm.controls['albumTitle'].errors | json }}</div>
+      <div class="album-form__group__control__error"
+           *ngIf="addAlbumForm.controls['albumTitle'].errors?.['required'] && addAlbumForm.controls['albumTitle'].dirty">
+        Please enter an album title
+      </div>
+      <div class="album-form__group__control__error" *ngIf="addAlbumForm.controls['albumTitle'].errors?.['maxlength']">
+        Please enter a shorter album title
+      </div>
+    </div>
+    <!-- albumGenre -->
+    <div class="album-form__group__label">Album Genre</div>
+    <div>
+      <input type="text" class="album-form__group__control" formControlName="albumGenre">
+      <div class="album-form__group__control__json">{{ addAlbumForm.controls['albumGenre'].errors | json }}</div>
+      <div class="album-form__group__control__error"
+           *ngIf="addAlbumForm.controls['albumGenre'].errors?.['required'] && addAlbumForm.controls['albumGenre'].dirty">
+        Please enter an Album Genre
+      </div>
+      <div class="album-form__group__control__error" *ngIf="addAlbumForm.controls['albumGenre'].errors?.['minlength']">
+        Please enter a Album Genre longer than 2 characters
+      </div>
+    </div>
+    <!-- albumGenre -->
+    <div class="album-form__group__label">Album Release Date</div>
+    <div>
+      <input type="date" class="album-form__group__control" formControlName="albumReleaseDate">
+      <div class="album-form__group__control__json">{{ addAlbumForm.controls['albumReleaseDate'].errors | json }}</div>
+      <div class="album-form__group__control__error"
+           *ngIf="addAlbumForm.controls['albumReleaseDate'].errors && addAlbumForm.controls['albumGenre'].dirty">Please
+        Enter an Album Release Data
+      </div>
+    </div>
+    <!-- best songs -->
+    <div formArrayName="albumBestSongs">
+      <div class="album-form__group__label album-form__group__label--mono">What are the best songs on this album...
+      </div>
+      <div *ngFor="let song of songs.controls; let i = index;"
+           [formGroupName]="i"
+           class="album-form__group__separator">
+        <!-- song name -->
+        <div class="album-form__group">
+          <div class="album-form__group__label form__group__label">Song Name</div>
+          <div>
+            <input type="text" formControlName="songName" class="album-form__group__control">
+          </div>
+        </div>
+        <!-- song track number -->
+        <div class="album-form__group">
+          <div class="album-form__group__label">Track Number</div>
+          <div>
+            <input type="number" formControlName="songTrackNumber" class="album-form__group__control">
+          </div>
+        </div>
+        <!-- delete the favourite song -->
+        <div class="album-form__group">
+          <div class="album-form__group__label album-form__group__label--sub">
+            <button type="button"
+                    class="album-form__control album-form__control--subcontrol album-form__control--destructive"
+                    (click)="deleteSong(i)">Remove Song
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- add favourite song -->
+      <div>
+        <button type="button"
+                class="album-form__control album-form__control--subcontrol"
+                (click)="addSong()">Add Song
+        </button>
+      </div>
+      <!-- controls -->
+      <div>
+        <button type="submit"
+                class="album-form__control"
+                [disabled]="!addAlbumForm.valid || formSubmitted">Add an Album
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -4,13 +4,13 @@ import {
   OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import {
   map,
   Observable,
   switchMap
 } from 'rxjs';
 import { Album } from '../types/album.interface';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-album-details',
@@ -20,7 +20,7 @@ import { Album } from '../types/album.interface';
 export class AlbumDetailsComponent implements OnInit {
 
   activatedRoute = inject(ActivatedRoute);
-  http = inject(HttpClient);
+  apiService = inject(ApiService);
 
   album$!: Observable<Album>;
 
@@ -35,7 +35,7 @@ export class AlbumDetailsComponent implements OnInit {
       // https://rxjs.dev/api/operators/map
       map(params => params['id']),
       // https://rxjs.dev/api/operators/switchMap
-      switchMap(albumId => this.http.get<Album>(`/get-albums/${albumId}`)
-      ));
+      switchMap(albumId => this.apiService.getAlbum(albumId))
+    );
   }
 }

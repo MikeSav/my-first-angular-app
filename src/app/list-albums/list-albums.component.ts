@@ -3,11 +3,12 @@ import {
   inject,
   OnInit
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { MOCK_ALBUMS } from '../../globals';
+import {
+  Observable,
+} from 'rxjs';
 import { Router } from '@angular/router';
 import { Album } from '../types/album.interface';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-list-albums',
@@ -17,9 +18,9 @@ import { Album } from '../types/album.interface';
 export class ListAlbumsComponent implements OnInit {
 
   albums$!: Observable<Album[]>;
-  // let's get our data by injecting the HttpClient
-  http = inject(HttpClient);
-  router = inject(Router)
+
+  apiService = inject(ApiService);
+  router = inject(Router);
 
   /**
    * Initialize the directive or component after Angular first displays
@@ -27,23 +28,30 @@ export class ListAlbumsComponent implements OnInit {
    * sets the directive or component's input properties.
    */
   ngOnInit(): void {
-    this.albums$ = this.http.get<Album[]>('/get-albums');
+    this.albums$ = this.apiService.getAlbums();
   }
 
   /**
-   * Add an album to the global fake call... not that random is it?
+   * Add a Brian Eno album
    */
-  addRandomAlbum(): void {
+  addBrianEnoAlbum(): void {
     // make a random id
     const id = (Math.random() + 1).toString(36).substring(7);
 
-    MOCK_ALBUMS.push({
+    const brianEnoAlbum = {
       id,
       artist: 'Brian Eno',
       title: 'Another Green World',
       genre: 'Avant-pop',
       released: '1975'
+    };
+
+    this.apiService.addAlbum(brianEnoAlbum).subscribe((resp: Album) => {
+      console.log(`${JSON.stringify(resp)} was added to the database`);
+      // now let's update the view as the Observable won't update automatically as we aren't using a store or anything...
+      this.albums$ = this.apiService.getAlbums();
     });
+
   }
 
   // navigation move to album details when clicked
