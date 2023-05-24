@@ -1,8 +1,8 @@
 <!-- Some homework -->
 <!-- 1. How do we validate the songs as if a favourite is submitted it must have entries -->
-<!-- 2. Why is the songs section visable when reseting? hint... [{}] -->
-<!-- 3. Show optional fav. songs on albume details page -->
-<!-- 4. How can we delete albums? -->
+<!-- 2. Why is the songs section visible when resetting? hint... [{}] -->
+<!-- 3. Show optional fav. songs on album details page -->
+<!-- 4. How can we delete albums on the list albums view? -->
 <form [formGroup]="addAlbumForm" (submit)="onSubmit()">
   <!-- thanks  -->
   <div class="album-form__feedback" [hidden]="!showThanks">
@@ -56,7 +56,7 @@
         Please enter a Album Genre longer than 2 characters
       </div>
     </div>
-    <!-- albumGenre -->
+    <!-- albumReleaseDate -->
     <div class="album-form__group__label">Album Release Date</div>
     <div>
       <input type="date" class="album-form__group__control" formControlName="albumReleaseDate">

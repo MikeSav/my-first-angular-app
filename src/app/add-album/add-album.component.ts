@@ -28,7 +28,7 @@ export class AddAlbumComponent implements OnInit {
 
   apiService = inject(ApiService);
 
-  formSubmitted = false
+  formSubmitted = false;
 
   showThanks = false;
 
